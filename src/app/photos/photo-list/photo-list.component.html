@@ -1,0 +1,8 @@
+<div class="text-center searchMargem">
+    <form>
+        <input class="rounded" placeholder="search" autofocus type="search" 
+        (input)="filter = $event.target.value">
+    </form>
+</div>
+<pj-photos [photos]="photos | filterByDescription : filter"></pj-photos>
+
