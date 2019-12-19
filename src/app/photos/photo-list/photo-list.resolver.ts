@@ -5,7 +5,7 @@ import { Photo } from '../photo/photo.interface';
 import { PhotoService } from '../photo/photo.service';
 
 @Injectable({providedIn: "root"})
-export class PhotoListResolver implements Resolve<Observable<Photo[]>{
+export class PhotoListResolver implements Resolve<Observable<Photo[]>> {
     
     constructor(private photoService: PhotoService) {}
 

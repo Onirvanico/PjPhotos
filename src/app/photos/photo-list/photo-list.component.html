@@ -1,9 +1,4 @@
-<div class="text-center searchMargem">
-    <form>
-        <input class="rounded" placeholder="search" autofocus type="search" 
-        (input)="debounce.next($event.target.value)">
-    </form>
-</div>
+<pj-search (onTyping)="filter = $event" [value]="filter"></pj-search>
 <pj-photos [photos]="photos | filterByDescription : filter"></pj-photos>
 
 <pj-load-button (click)="load()" [hasMore] ="hasMore"></pj-load-button>
