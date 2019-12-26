@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { lowerCaseValidator } from 'src/app/shared/validators/lowercase.validators';
 import { UserNotTakenValidatorService } from './user-not-taken.validator.service';
 import { NewUser } from './new-user';
 import { SignupService } from './signup.service';
 import { Router } from '@angular/router';
+import { PlatFormDetectorService } from 'src/app/core/platform-detector/platform-detector.service';
 
 @Component({
  templateUrl: './signup.component.html'
@@ -12,9 +13,10 @@ import { Router } from '@angular/router';
 export class SignupComponent implements OnInit {
     
     signupForm: FormGroup;
-    
+    @ViewChild('inputEmail') inputEmail: ElementRef<HTMLInputElement>;
     constructor(private formBuider: FormBuilder, private userNotTaken: UserNotTakenValidatorService,
-                private signupService: SignupService, private router: Router){}
+                private signupService: SignupService, private router: Router,
+                private platformDetector: PlatFormDetectorService){}
 
     ngOnInit(): void {
 
@@ -30,6 +32,9 @@ export class SignupComponent implements OnInit {
             password: ['', [ Validators.required, Validators.minLength(8), Validators.maxLength(12) ] ]
 
     });
+
+    this.platformDetector &&
+         this.inputEmail.nativeElement.focus();
     }
     signup() {
         const newUser = this.signupForm.getRawValue() as NewUser;

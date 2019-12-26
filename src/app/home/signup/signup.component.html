@@ -2,7 +2,7 @@
 
 <form class="form mt-4" [formGroup]="signupForm" (submit)="signup()">
     <div class="form-group">
-        <input  formControlName="email" placeholder="email" class="form-control" autofocus >
+        <input  #inputEmail formControlName="email" placeholder="email" class="form-control" autofocus >
         <pj-vmessage *ngIf="signupForm.get('email').errors?.required" 
         text="Email is required!"></pj-vmessage>
         <pj-vmessage *ngIf="signupForm.get('email').errors?.email" 
